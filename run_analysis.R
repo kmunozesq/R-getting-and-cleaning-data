@@ -5,7 +5,7 @@ run_analysis <- function()
         dir <- "data_cln_project"        
         if(file.exists(dir))
         {
-                #1) Loading and Formating training data set
+                #Loading and Formating training data set
                 tidy_data_file <- file.path(getwd(),dir,"tidy_data.txt")
                 features_file <- file.path(getwd(),dir,"features.txt")
                 activity_labels_file <- file.path(getwd(),dir,"activity_labels.txt")
@@ -26,7 +26,7 @@ run_analysis <- function()
                 DF <- cbind(DF, activity)
                 DF <- cbind(DF, subject)
                 
-                #Loading and formating the testing data
+                #Loading and formating testing data
                 testfile_data <- file.path(getwd(),dir,"test", "X_test.txt")
                 testfile_labels <-file.path(getwd(),dir,"test", "y_test.txt")
                 testsubjects_file <- file.path(getwd(),dir,"test","subject_test.txt")
@@ -59,7 +59,7 @@ run_analysis <- function()
                         setnames(DT, i, names_new[i])
                 }
                 rm("names_new")
-                #print(str(DT))
+                print(summary(DT))
                 ####### Here TESTING AND TRAINING DATA ARE TOGETHER IN DT
                 
                 ##sUBSETTING DT to mean and std values + activity + subject
@@ -159,7 +159,7 @@ run_analysis <- function()
                                   Average_fBodyBodyGyroMag_std = mean(fBodyBodyGyroMag_std,na.rm = TRUE),
                                   Average_fBodyBodyGyroJerkMag_std = mean(fBodyBodyGyroJerkMag_std,na.rm = TRUE)) %>%
                                 ### THE TIDY DATA IS IN DT
-                                write.table(file=tidy_data_file, row.name=FALSE)                
+                                write.table(file=tidy_data_file, row.name=FALSE)  
         }
 }
 
